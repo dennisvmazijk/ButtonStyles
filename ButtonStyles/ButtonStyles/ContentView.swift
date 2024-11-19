@@ -36,6 +36,13 @@ struct ContentView: View {
                 .buttonStyle(.bordered)
             Button("BorderedProminent") {}
                 .buttonStyle(.borderedProminent)
+
+            Button {} label: {
+                Text("CustomStyle")
+                    .padding(.vertical, 7)
+                    .padding(.horizontal)
+            }
+            .buttonStyle(CustomButtonStyle())
         }
         .disabled(isDisabled)
         .tint(isTintEnabled ? .red : .accentColor)
@@ -59,6 +66,18 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 5)
         }
+    }
+}
+
+private struct CustomButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) var isEnabled
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundStyle(.white)
+            .background(.blue)
+            .opacity(isEnabled ? (configuration.isPressed ? 0.5 : 1) : 0.5)
+            .cornerRadius(8)
     }
 }
 
