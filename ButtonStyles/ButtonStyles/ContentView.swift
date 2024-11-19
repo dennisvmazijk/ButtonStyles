@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isDisabled = false
-    @State private var isTintEnabled = false
+    @State private var isButtonDisabled = false
+    @State private var isChangeTintEnabled = false
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 30) {
                 buttonGroupView
-                toggleDisabledView
-                toggleTintView
+                disableButtonToggleView
+                changeTintToggleView
             }
             .navigationTitle("Button Styles")
             .toolbarTitleDisplayMode(.inline)
@@ -44,12 +44,12 @@ struct ContentView: View {
             }
             .buttonStyle(CustomButtonStyleBlue())
         }
-        .disabled(isDisabled)
-        .tint(isTintEnabled ? .red : .accentColor)
+        .disabled(isButtonDisabled)
+        .tint(isChangeTintEnabled ? .red : .accentColor)
     }
 
-    private var toggleDisabledView: some View {
-        Toggle(isOn: $isDisabled) {
+    private var disableButtonToggleView: some View {
+        Toggle(isOn: $isButtonDisabled) {
             Text("有効/無効に切り替える")
                 .font(.subheadline)
                 .foregroundStyle(.black.opacity(0.8))
@@ -58,8 +58,8 @@ struct ContentView: View {
         }
     }
 
-    private var toggleTintView: some View {
-        Toggle(isOn: $isTintEnabled) {
+    private var changeTintToggleView: some View {
+        Toggle(isOn: $isChangeTintEnabled) {
             Text("色を変更")
                 .font(.subheadline)
                 .foregroundStyle(.black.opacity(0.8))
