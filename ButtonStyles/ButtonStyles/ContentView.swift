@@ -9,12 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isDisabled = false
+    @State private var isTintEnabled = false
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 30) {
                 buttonGroupView
-                toggleView
+                toggleDisabledView
+                toggleTintView
             }
             .navigationTitle("Button Styles")
             .toolbarTitleDisplayMode(.inline)
@@ -36,11 +38,22 @@ struct ContentView: View {
                 .buttonStyle(.borderedProminent)
         }
         .disabled(isDisabled)
+        .tint(isTintEnabled ? .red : .accentColor)
     }
 
-    private var toggleView: some View {
+    private var toggleDisabledView: some View {
         Toggle(isOn: $isDisabled) {
             Text("有効/無効に切り替える")
+                .font(.subheadline)
+                .foregroundStyle(.black.opacity(0.8))
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.trailing, 5)
+        }
+    }
+
+    private var toggleTintView: some View {
+        Toggle(isOn: $isTintEnabled) {
+            Text("色を変更")
                 .font(.subheadline)
                 .foregroundStyle(.black.opacity(0.8))
                 .frame(maxWidth: .infinity, alignment: .trailing)
