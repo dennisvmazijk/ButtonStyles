@@ -42,7 +42,7 @@ struct ContentView: View {
                     .padding(.vertical, 7)
                     .padding(.horizontal)
             }
-            .buttonStyle(CustomButtonStyle())
+            .buttonStyle(CustomButtonStyleBlue())
         }
         .disabled(isDisabled)
         .tint(isTintEnabled ? .red : .accentColor)
@@ -69,7 +69,7 @@ struct ContentView: View {
     }
 }
 
-private struct CustomButtonStyle: ButtonStyle {
+private struct CustomButtonStyleBlue: ButtonStyle {
     @Environment(\.isEnabled) var isEnabled
 
     func makeBody(configuration: Configuration) -> some View {
@@ -78,6 +78,21 @@ private struct CustomButtonStyle: ButtonStyle {
             .background(.blue)
             .opacity(isEnabled ? (configuration.isPressed ? 0.5 : 1) : 0.5)
             .cornerRadius(8)
+    }
+}
+
+private struct CustomButtonStylePink: ButtonStyle {
+    @Environment(\.isEnabled) var isEnabled
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundStyle(.pink)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(.pink, lineWidth: 1)
+            )
+            .background(.clear)
+            .opacity(isEnabled ? (configuration.isPressed ? 0.5 : 1) : 0.5)
     }
 }
 
