@@ -60,7 +60,7 @@ struct ContentView: View {
 
     private var changeTintToggleView: some View {
         Toggle(isOn: $isChangeTintEnabled) {
-            Text("色を変更")
+            Text("色を変える")
                 .font(.subheadline)
                 .foregroundStyle(.black.opacity(0.8))
                 .frame(maxWidth: .infinity, alignment: .trailing)
